@@ -3,8 +3,6 @@
  */
 package writeToFile;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -40,7 +38,7 @@ public class App {
     }
 
     public static void main(String[] args) throws IOException {
-        File fFile = new File( "baconSentences.txt" );
+        File fFile = new File( "../.tmp/baconSentences.txt" );
         fFile.createNewFile();
 
         FileWriter fwWriter = new FileWriter( fFile.getPath() );
