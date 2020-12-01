@@ -22,17 +22,18 @@ public class App {
     private static ArrayList<String> extractFilesSentences ( File fBaconFile ) throws FileNotFoundException {
         ArrayList<String> alBaconSentences = new ArrayList<>();
 
-        Scanner sScanner = new Scanner(fBaconFile);
-        while ( sScanner.hasNextLine() ) {
-            String sRawLine = sScanner.nextLine();
-            String sLine = sRawLine.trim();
-            if ( !sLine.isEmpty() ) {
-                String[] aSplit = sLine.split("\\.");
-                Arrays.stream(aSplit).forEach(s -> alBaconSentences.add(s.trim() + ".\n"));
+        for ( int i = 0; i < 2000; i++ ) {
+            Scanner sScanner = new Scanner(fBaconFile);
+            while ( sScanner.hasNextLine() ) {
+                String sRawLine = sScanner.nextLine();
+                String sLine = sRawLine.trim();
+                if ( !sLine.isEmpty() ) {
+                    String[] aSplit = sLine.split("\\.");
+                    Arrays.stream(aSplit).forEach(s -> alBaconSentences.add(s.trim() + ".\n"));
+                }
             }
+            sScanner.close();
         }
-
-        sScanner.close();
 
         return alBaconSentences;
     }
