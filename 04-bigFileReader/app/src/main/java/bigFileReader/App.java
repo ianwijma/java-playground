@@ -1,42 +1,33 @@
 
 package bigFileReader;
 
-import bigFileReader.Utilities.FileLineReader;
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
+import java.net.URL;
 
 public class App extends Application {
 
-    private static FileLineReader reader;
-
-    public static void main(String[] args) throws IOException {
-        Path path = Paths.get( "../../03-writeToFile/.tmp/baconSentences.txt" );
-        reader = new FileLineReader( path );
-
+    public static void main(String[] args) {
         Application.launch( args );
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        TextArea textArea = new TextArea();
-        String[] lines = reader.getAll();
-        textArea.setText( String.join("\n", lines) );
-
-
-        Group group = new Group(textArea);
-        Scene scene = new Scene(group, 500, 150, Color.WHITE);
-        primaryStage.setScene( scene );
-
+    public void start(Stage primaryStage) throws IOException {
+        primaryStage.setScene( getEditor() );
         primaryStage.setTitle("BigFileReader");
         primaryStage.show();
     }
+
+    private Scene getEditor() throws IOException {
+        URL resourceUrl = getClass().getResource("/Editor.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader( resourceUrl );
+        Parent root = fxmlLoader.load();
+        return new Scene( root, 800, 600 );
+    }
+
 }

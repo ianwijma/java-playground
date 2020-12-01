@@ -11,6 +11,10 @@ public class FileLineReader {
     private final List<String> fileLines;
     private final int fileLineAmount;
 
+    public int getLineAmount () {
+        return this.fileLineAmount;
+    }
+
     public FileLineReader( Path path ) throws IOException {
         if (!Files.exists( path ))
             throw new FileNotFoundException(String.format("File not found: %s", path.toAbsolutePath().toString()));
